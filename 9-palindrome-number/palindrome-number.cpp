@@ -8,7 +8,7 @@ public:
             sum = sum * 10 + rem;
             x = x / 10;
         }
-        if(sum == original && original >= 0){
+        if(sum == original){
            return true;
         }else{
             return false;
