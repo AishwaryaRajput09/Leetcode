@@ -1,15 +1,19 @@
-
-
 class Solution {
     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
-        Arrays.sort(arr);
+        int n = arr.length;
+        int[] count = new int[n + 1];
 
-        arr[0] = 1; // Ensure the first element is 1
-
-        for (int i = 1; i < arr.length; i++) {
-            arr[i] = Math.min(arr[i], arr[i - 1] + 1); // Ensure the absolute difference is <= 1
+        // Count the occurrences of each element
+        for (int num : arr) {
+            count[Math.min(num, n)]++;
         }
 
-        return arr[arr.length - 1]; // Return the maximum element
+        // Update the array to satisfy the conditions
+        int currentMax = 0;
+        for (int i = 1; i <= n; i++) {
+            currentMax = Math.min(currentMax + count[i], i);
+        }
+
+        return currentMax;
     }
 }
