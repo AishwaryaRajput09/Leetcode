@@ -1,6 +1,6 @@
 class Solution {
     public int minPairSum(int[] nums) {
-        Arrays.sort(nums);
+        Arrays.parallelSort(nums);
         int i = 0;
         int j = nums.length-1;
         int maxSum = 0;
