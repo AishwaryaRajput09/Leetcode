@@ -1,33 +1,19 @@
 public class Solution {
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        int n = nums.length;
-        List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> currentSubset = new ArrayList<>();
-        Arrays.sort(nums); // Sort the array to handle duplicates
-        subsetsHelper(nums, n, ans, currentSubset, 0);
-        return ans;
+    public static void findSubsets(int ind, int[] nums, List<Integer> ds, List<List<Integer>> ansList) {
+        ansList.add(new ArrayList<>(ds)); 
+        for(int i = ind;i<nums.length;i++) {
+            if(i!=ind && nums[i] == nums[i-1]) continue; 
+            ds.add(nums[i]); 
+            findSubsets(i+1, nums, ds, ansList); 
+            ds.remove(ds.size() - 1);
+        }
+        
     }
-
-    static List<List<Integer>> subsetsHelper(int[] nums, int n, List<List<Integer>> ans, List<Integer> currentSubset, int ind) {
-        if (ind == n) {
-            ans.add(new ArrayList<>(currentSubset));
-            return ans;
-        }
-
-        // Include the current element in the subset
-        currentSubset.add(nums[ind]);
-        subsetsHelper(nums, n, ans, currentSubset, ind + 1);
-
-        // Skip duplicates
-        while (ind < n - 1 && nums[ind] == nums[ind + 1]) {
-            ind++;
-        }
-
-        // Exclude the current element from the subset
-        currentSubset.remove(currentSubset.size() - 1);
-        subsetsHelper(nums, n, ans, currentSubset, ind + 1);
-
-        return ans;
+    public static List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums); 
+        List<List<Integer>> ansList = new ArrayList<>(); 
+        findSubsets(0, nums, new ArrayList<>(), ansList); 
+        return ansList; 
     }
 }
 
