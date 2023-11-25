@@ -1,5 +1,3 @@
-
-
 public class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         int n = nums.length;
@@ -32,3 +30,4 @@ public class Solution {
         return ans;
     }
 }
+
