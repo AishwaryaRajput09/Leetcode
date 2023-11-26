@@ -15,16 +15,15 @@ class Solution {
             return;
         }
 
-        for (int end = start + 1; end <= s.length(); end++) {
-            String substring = s.substring(start, end);
-            if (isPalindrome(substring)) {
-                ans.add(substring);
-                palinS(res, ans, s, end);
-                ans.remove(ans.size() - 1);
+        for(int end = start + 1; end <= s.length();end++){
+            String substr = s.substring(start,end);
+            if(isPalindrome(substr)){
+                ans.add(substr);
+                palinS(res,ans,s,end);
+                ans.remove(ans.size()-1);
             }
         }
     }
-
     private boolean isPalindrome(String s) {
         int i = 0;
         int j = s.length() - 1;
