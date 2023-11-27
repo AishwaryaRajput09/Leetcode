@@ -1,6 +1,6 @@
 class Solution {
     
-    private void perm(int[] nums,List<List<Integer>> res,int ind){
+    public void perm(int[] nums,List<List<Integer>> res,int ind){
         if(ind == nums.length){
             List<Integer> ans = new ArrayList<>();
             for(int e : nums){
