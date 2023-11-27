@@ -1,9 +1,5 @@
 class Solution {
-    public List<List<Integer>> permute(int[] nums) {
-    List<List<Integer>> res = new ArrayList<>();
-    perm(nums,res,0);
-    return res;
-    }
+    
     private void perm(int[] nums,List<List<Integer>> res,int ind){
         if(ind == nums.length){
             List<Integer> ans = new ArrayList<>();
@@ -23,9 +19,9 @@ class Solution {
             nums[ind]=temp;
         }
     }
-    private void swap(int i, int j, int[]  nums){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+    public List<List<Integer>> permute(int[] nums) {
+    List<List<Integer>> res = new ArrayList<>();
+    perm(nums,res,0);
+    return res;
     }
 }
