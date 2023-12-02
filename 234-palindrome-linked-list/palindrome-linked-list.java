@@ -1,46 +1,34 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) {
-            return true; // An empty list or a list with one element is a palindrome
-        }
-
-        // Find the middle of the list
+        
         ListNode slow = head;
         ListNode fast = head;
+        ListNode prev = null;
 
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
+        while(true){
+            if(fast == null){ //even
+                break;
+            }
+            if(fast.next == null){ //odd
+                slow = slow.next;
+                break;
+            }
+            //continue to end
             fast = fast.next.next;
+
+            //reversal
+            ListNode temp = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = temp;
         }
 
-        // Reverse the second half of the list
-        ListNode secondHalf = reverseList(slow);
-
-        // Compare the first half with the reversed second half
-        ListNode firstHalf = head;
-
-        while (secondHalf != null) {
-            if (firstHalf.val != secondHalf.val) {
-                return false;
-            }
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
+        while(slow != null){
+            if(prev.val != slow.val) return false;
+            slow = slow.next;
+            prev = prev.next;
         }
 
         return true;
-    }
-
-    private ListNode reverseList(ListNode head) {
-        ListNode prev = null;
-        ListNode current = head;
-
-        while (current != null) {
-            ListNode nextTemp = current.next;
-            current.next = prev;
-            prev = current;
-            current = nextTemp;
-        }
-
-        return prev;
     }
 }
