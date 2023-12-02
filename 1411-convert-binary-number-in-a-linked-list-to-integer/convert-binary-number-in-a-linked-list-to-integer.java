@@ -14,7 +14,9 @@ class Solution {
         
         int sum = 0;
         while(head != null){
-           sum =(sum<<1)| head.val;
+           sum =(sum<<1);
+           sum += head.val;
+           
             head = head.next;
         }
         
