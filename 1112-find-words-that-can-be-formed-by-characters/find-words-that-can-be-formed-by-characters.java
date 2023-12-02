@@ -1,27 +1,30 @@
-
 class Solution {
     public int countCharacters(String[] words, String chars) {
         int count = 0;
-        Map<Character, Integer> charFreq = new HashMap<>();
-
+        
+        int[] charCount = new int[26]; // Assuming lowercase English letters
+        
         // Count the frequency of each character in chars
         for (char c : chars.toCharArray()) {
-            charFreq.put(c, charFreq.getOrDefault(c, 0) + 1);
+            charCount[c - 'a']++;
         }
 
         // Check if each word in words can be formed using chars
         for (String word : words) {
-            // Create a copy of the character frequency map for each word
-            Map<Character, Integer> wordFreq = new HashMap<>(charFreq);
+            int[] wordCount = new int[26];
+
+            // Count the frequency of each character in the current word
+            for (char c : word.toCharArray()) {
+                wordCount[c - 'a']++;
+            }
 
             // Check if the current word can be formed using chars
             boolean canFormWord = true;
-            for (char c : word.toCharArray()) {
-                if (!wordFreq.containsKey(c) || wordFreq.get(c) == 0) {
+            for (int i = 0; i < 26; i++) {
+                if (wordCount[i] > charCount[i]) {
                     canFormWord = false;
                     break;
                 }
-                wordFreq.put(c, wordFreq.get(c) - 1);
             }
 
             // If the word can be formed, add its length to the count
