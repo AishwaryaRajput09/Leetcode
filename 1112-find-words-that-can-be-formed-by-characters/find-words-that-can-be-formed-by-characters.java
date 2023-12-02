@@ -1,28 +1,35 @@
+
 class Solution {
     public int countCharacters(String[] words, String chars) {
         int count = 0;
-        Map<Character,Integer> charFreq = new HashMap<>();
-        for(char ch : chars.toCharArray()){
-            charFreq.put(ch,charFreq.getOrDefault(ch,0)+1);
+        Map<Character, Integer> charFreq = new HashMap<>();
+
+        // Count the frequency of each character in chars
+        for (char c : chars.toCharArray()) {
+            charFreq.put(c, charFreq.getOrDefault(c, 0) + 1);
         }
-        for(String s: words){
-        Map<Character,Integer> freq = new HashMap<>();
-            for(char c:s.toCharArray()){
-             freq.put(c, freq.getOrDefault(c, 0) + 1);
-        }
-            boolean canForm = true;
-            for(char c: freq.keySet()){
-                if(!charFreq.containsKey(c)|| charFreq.get(c) < freq.get(c)){
-                    canForm = false;
+
+        // Check if each word in words can be formed using chars
+        for (String word : words) {
+            // Create a copy of the character frequency map for each word
+            Map<Character, Integer> wordFreq = new HashMap<>(charFreq);
+
+            // Check if the current word can be formed using chars
+            boolean canFormWord = true;
+            for (char c : word.toCharArray()) {
+                if (!wordFreq.containsKey(c) || wordFreq.get(c) == 0) {
+                    canFormWord = false;
                     break;
                 }
+                wordFreq.put(c, wordFreq.get(c) - 1);
             }
-            if(canForm){
-                count+=s.length();
+
+            // If the word can be formed, add its length to the count
+            if (canFormWord) {
+                count += word.length();
             }
         }
 
         return count;
-    }   
-    
+    }
 }
