@@ -12,9 +12,6 @@ class Solution {
          node.val = vals.val;
          node.next = vals.next;
          node = vals;
-         vals.next = vals.next;
-        //  node = null;
-
-        // val.next = node.next;
+        //  vals.next = vals.next;
     }
 }
