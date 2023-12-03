@@ -11,7 +11,7 @@ class Solution {
         ListNode vals = node.next;
          node.val = vals.val;
          node.next = vals.next;
-         node = vals;
-        //  vals.next = vals.next;
+        //  node = vals;
+        
     }
 }
