@@ -1,12 +1,17 @@
 class Solution {
     public String largestGoodInteger(String num) {
-        String str[] = {"999", "888", "777", "666", "555", "444", "333", "222", "111", "000"};
-        for(String s: str){
-            if(num.contains(s)){
-                return s;
+        int ans = -1;
+        for(int i = 0; i < num.length()-2;i++){
+            if(num.charAt(i)==num.charAt(i+1) && num.charAt(i+1)==num.charAt(i+2)){
+                String sb = num.substring(i,i+3);
+                ans = Math.max(ans,Integer.parseInt(sb));
             }
-            
         }
-                return "";
+        if(ans == 0){
+            return "000";
+        }if(ans == -1){
+            return "";
+        }
+        return ""+ans;
     }
 }
