@@ -7,7 +7,6 @@ class Solution {
             }
             
         }
-                System.gc();
                 return "";
     }
 }
