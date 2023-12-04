@@ -29,6 +29,7 @@ class Solution {
         }else{
             curr.next = list2;
         }
+        System.gc();
         return dummy.next;
     }
 }
