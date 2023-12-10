@@ -1,23 +1,15 @@
 class Solution {
     public int[][] transpose(int[][] matrix) {
-        ArrayList<ArrayList<Integer>> ls = new ArrayList<>();
-        for(int i = 0 ; i < matrix[0].length ; i++){
-                ArrayList<Integer> ans = new ArrayList<>();
-            for(int j = 0; j<matrix.length; j++){
-                ans.add(matrix[j][i]);
-            }
-            ls.add(ans);
-        }
-                int rows = ls.size();
-        int columns = ls.get(0).size(); // Assuming all rows have the same size
+        int row = matrix.length;
+        int col = matrix[0].length;
 
-        int[][] array2D = new int[rows][columns];
+        int ans [][] = new int [col][row];
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                array2D[i][j] = ls.get(i).get(j);
+        for(int i = 0; i < row ; i++){
+            for(int j = 0; j < col;j++){
+                ans[j][i]= matrix[i][j];
             }
         }
-    return array2D;
+        return ans;
     }
 }
