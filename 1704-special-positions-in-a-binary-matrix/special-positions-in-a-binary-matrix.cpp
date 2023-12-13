@@ -6,6 +6,7 @@ public:
             for(int j = 0 ; j < mat[0].size();j++){
                 if(mat[i][j]==1 && isSpecial(mat,i,j)){
                     count++;
+                    break;
                 }
             }
         }
