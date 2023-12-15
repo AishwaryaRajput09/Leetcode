@@ -2,23 +2,13 @@
 class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
-        unordered_map<string, string> myMap;
-        
-        // Build the graph
-        for (auto it : paths) {
-            myMap[it[0]] = it[1];
+        unordered_set<string> startCity;
+        for(int i = 0 ; i < paths.size(); i++){
+            startCity.insert(paths[i][0]);
         }
-        
-        string ans;
-        
-        // Find the destination city without outgoing edges
-        for (auto it : paths) {
-            if (myMap.find(it[1]) == myMap.end()) {
-                ans = it[1];
-                break;
-            }
+        for(int i = 0 ; i < paths.size(); i++){
+            if(startCity.find(paths[i][1])==startCity.end()) return paths[i][1];
         }
-        
-        return ans;
+        return "";
     }
 };
