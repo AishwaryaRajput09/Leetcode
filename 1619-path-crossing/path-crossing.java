@@ -21,13 +21,20 @@ class Solution {
                 break;
             }
             
-            String curr = x + "," + y;
+            String cordinates=getCordinates(x,y);
 
-            if(visited.contains(curr)){
+            if(visited.contains(cordinates)){
                 return true;
             }
-            visited.add(curr);
+            visited.add(cordinates);
         }
         return false;
+    }
+   private String getCordinates(int x , int y){
+       StringBuilder s = new StringBuilder();
+       s.append(x);
+       s.append(",");
+       s.append(y);
+       return s.toString();
     }
 }
