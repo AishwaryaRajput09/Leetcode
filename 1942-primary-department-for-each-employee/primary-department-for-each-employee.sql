@@ -1,18 +1,11 @@
 # Write your MySQL query statement below
 SELECT
-    employee_id,
-    department_id
+    e.employee_id,
+    e.department_id
 FROM 
-    Employee
+    Employee e
 WHERE 
     primary_flag = 'Y'
-UNION
-SELECT 
-    employee_id,
-    department_id
-FROM 
-    Employee
-GROUP BY 
-    employee_id
-HAVING 
-    count(employee_id) = 1;
+OR
+    e.employee_id in 
+    (select employee_id from Employee group by employee_id having count(distinct department_id)=1);
