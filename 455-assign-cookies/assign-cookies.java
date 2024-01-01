@@ -8,11 +8,9 @@ class Solution {
         while(i < g.length && j < s.length){
             if(s[j] >= g[i]){
                 cnt++;
-                // j++;
                 i++;
             }
-                j++;
-            
+              j++;
         }
         return cnt;
     }
