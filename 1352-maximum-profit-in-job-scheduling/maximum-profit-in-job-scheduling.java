@@ -20,7 +20,7 @@ public class Solution {
             jobs[i] = new Job(startTime[i], endTime[i], profit[i]);
         }
 
-        // Sort jobs based on end times
+       
         Arrays.sort(jobs, Comparator.comparingInt(a -> a.end));
 
         int[] dp = new int[n];
