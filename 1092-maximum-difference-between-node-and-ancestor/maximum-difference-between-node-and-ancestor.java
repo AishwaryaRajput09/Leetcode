@@ -19,8 +19,7 @@ class Solution {
         dfs(root,root.val,root.val,diff);
        return diff[0];
     } private void dfs(TreeNode node,int max,int min , int[] diff){
-        // int max = Integer_MIN_VALUE;
-        // int min = Integer_MAX_VALUE;
+
         if(node == null){
             return;
         }
@@ -29,6 +28,6 @@ class Solution {
         diff[0] = Math.max(diff[0],max-min);
         dfs(node.left,max,min,diff);
         dfs(node.right,max,min,diff);
-        // return diff;
+        
     }
 }
