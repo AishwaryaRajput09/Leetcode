@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
         List<List<Integer>> winners = new ArrayList<>();
