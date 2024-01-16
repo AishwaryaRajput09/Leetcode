@@ -8,10 +8,9 @@ class RandomizedSet {
         if(!map.containsKey(val)){
             map.put(val,1);
             return true;
-        }else{
-            map.put(val,map.get(val)+1);
-        return false;
         }
+        return false;
+        
     }
     
     public boolean remove(int val) {
