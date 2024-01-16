@@ -15,14 +15,7 @@ class RandomizedSet {
     }
     
     public boolean remove(int val) {
-        if(map.containsKey(val)){
-            int cnt = map.get(val);
-            if(cnt >= 1){
-                map.remove(val);
-            }
-            return true;
-        }
-        return false;
+        return map.remove(val) != null;
     }
     
     public int getRandom() {
