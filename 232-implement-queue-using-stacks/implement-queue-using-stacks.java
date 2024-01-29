@@ -1,73 +1,26 @@
 class MyQueue {
-    // private Stack<Integer> st1;
-    // private Stack<Integer> st2;
-    // public MyQueue() {
-    //      st1 = new Stack<>();
-    //      st2 = new Stack<>();
-
-    // }
-    
-    // public void push(int x) {
-    //     st1.push(x);
-    // }
-    
-    // public int pop() {
-    //     if(st2.isEmpty()){
-    //         while(!st1.isEmpty()){
-
-    //         st2.push(st1.pop());
-    //         }
-    //     }
-    //     if(!st2.isEmpty()){
-    //         return st2.pop();
-    //     }
-    //     return 0;
-    // }
-    
-    // public int peek() {
-    //     if(st2.isEmpty()){
-    //         while(!st1.isEmpty()){
-    //             st2.push(st1.pop());
-    //         }
-    //     }
-    //     if(!st2.isEmpty()){
-    //         return st2.peek();
-    //     }
-    //     return 0;
-    // }
-    
-    // public boolean empty() {
-    //     return st1.isEmpty() && st2.isEmpty();
-    // }
-     
-    private Queue<Integer> queue;
+    private  Queue<Integer> q;
     public MyQueue() {
-         queue = new LinkedList<>();
-        //  st2 = new Stack<>();
-
+       q = new LinkedList<>();
     }
     
     public void push(int x) {
-        queue.offer(x);
+        q.offer(x);
     }
     
     public int pop() {
-        if(!queue.isEmpty()){
-            return queue.poll();
+        if(!q.isEmpty()){
+          return  q.poll();
         }
-        return 0;
+        return -1;
     }
     
     public int peek() {
-        if(!queue.isEmpty()){
-            return queue.peek();
-        }
-        
-        return 0;
+       return q.peek();
     }
     
     public boolean empty() {
-        return queue.isEmpty();
+        return q.isEmpty();
     }
 }
 
