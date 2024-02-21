@@ -2,8 +2,8 @@ class Solution {
     public int missingNumber(int[] nums) {
         int i = 0;
         while(i < nums.length){
-            // int curr = nums[i]-1;
-            if(nums[i] < nums.length && nums[i] != nums[nums[i] ]){
+           
+            if(nums[i] < nums.length && nums[i] != nums[nums[i]]){
                 swap(nums[i],i,nums);
             }else{
                 i++;
