@@ -8,10 +8,7 @@
  */
 class Solution {
     public void deleteNode(ListNode node) {
-        ListNode forw = node.next;
-        node.val = forw.val;
-        node.next = forw.next;
-        node = forw;
-        forw.next = forw.next;
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
 }
