@@ -1,39 +1,34 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> res = new ArrayList<>();
+        List<List<String>> result = new ArrayList<>();
         List<String> ans = new ArrayList<>();
-        palinS(res, ans, s, 0);
-        return res;
+        solve(result,ans,s,0);
+        return result;
     }
-
-    void palinS(List<List<String>> res, List<String> ans, String s, int start) {
-        if (start == s.length()) {
-            res.add(new ArrayList<>(ans));
+    private void solve(List<List<String>> result, List<String> ans,String s,int start){
+        if(start == s.length()){
+            result.add(new ArrayList<>(ans));
             return;
         }
 
-        for(int end = start + 1; end <= s.length();end++){
-            String substr = s.substring(start,end);
-            if(isPalindrome(substr)){
+        for(int e = start + 1; e <= s.length(); e++){
+            String substr = s.substring(start,e);
+            if(isPal(substr)){
                 ans.add(substr);
-                palinS(res,ans,s,end);
-                ans.remove(ans.size()-1);
+                solve(result,ans,s,e);
+                ans.remove(ans.size() - 1);
             }
         }
     }
-    private boolean isPalindrome(String s) {
-        int i = 0;
-        int j = s.length() - 1;
-
-        while (i < j) {
-            if (s.charAt(i) != s.charAt(j)) {
+    private boolean isPal(String s){
+        int st = 0;
+        int e = s.length() - 1;
+        while( st < e){
+            if(s.charAt(st) != s.charAt(e)){
                 return false;
             }
-            i++;
-            j--;
+            st++;
+            e--;
         }
         return true;
     }
