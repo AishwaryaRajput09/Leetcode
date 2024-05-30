@@ -1,12 +1,18 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-        for(int i = 0; i < nums.length; i++){
-            for(int j =  i + 1; j < nums.length; j++){
-                if(nums[i] == 0 && nums[j] != 0){
+        int i = 0;
+        int j = 0;
+        while(i < nums.length && j < nums.length){
+
+                if( nums[i] != 0){
                     swap(i, j, nums);
+                    i++;
+                    j++;
+                }else{
+                    i++;
                 }
-            }
         }
+            
     }
     private void swap(int i, int j, int[] nums){
         int temp = nums[i];
