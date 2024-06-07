@@ -1,27 +1,24 @@
 class Solution {
     public String replaceWords(List<String> dictionary, String sentence) {
-        HashMap<String,Integer> map = new HashMap<>();
-        for(String s : dictionary){
-            if(!map.containsKey(s)){
-                map.put(s,s.length());
+        HashSet<String> dictSet = new HashSet<>(dictionary);
+    
+        String [] words = sentence.split(" ");
+        StringBuilder res = new StringBuilder();
+        for(String word: words){
+            String prefix = null;
+           for(int i = 1; i <= word.length(); i++){
+            String substr = word.substring(0,i);
+            if(dictSet.contains(substr)){
+                prefix = substr;
+                break;
             }
+           }
+           if(prefix != null){
+            res.append(prefix).append(" ");
+           }else{
+            res.append(word).append(" ");
+           }
         }
-        // StringBuilder sb = new StringBuilder();
-        String res = "";
-        String [] line = sentence.split(" ");
-        for(int i = 0; i < line.length; i++){
-            for(String key: map.keySet()){
-                if(line[i].startsWith(key)){
-                    line[i] = key;
-                }else{
-                    continue;
-                }
-            }
-        }
-        for(String s : line){
-                res += s;
-                res += " ";
-        }
-        return res.trim();
+        return res.toString().trim();
     }
 }
