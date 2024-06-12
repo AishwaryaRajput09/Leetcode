@@ -4,12 +4,12 @@ class Solution {
         int j = 0;
         while(i < nums.length && j < nums.length){
 
-                if( nums[i] != 0){
-                    swap(i, j, nums);
+                if(nums[i] == 0){
+                    i++;
+                }else{
+                    swap(i,j,nums);
                     i++;
                     j++;
-                }else{
-                    i++;
                 }
         }
             
