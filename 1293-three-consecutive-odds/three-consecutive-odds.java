@@ -5,7 +5,7 @@ class Solution {
             int cnt = 0;
             int j = i;
             int k = 0;
-            while(j < arr.length && k < 3){
+            while(j < arr.length){
                 if(arr[j] % 2 == 1){
                     cnt++;
                 }else{
