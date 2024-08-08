@@ -1,53 +1,45 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public String minWindow(String s, String t) {
-        if (s == null || t == null || s.length() < t.length()) {
-            return "";
+        HashMap<Character,Integer> targetF = new HashMap<>();
+        if(s == null || t == null || s.length() < t.length()) return "";
+        for(char ch : t.toCharArray()){
+            if(targetF.containsKey(ch)){
+                targetF.put(ch,targetF.get(ch)+1);
+            }else{
+                targetF.put(ch,1);
+            }
+
         }
-
-        Map<Character, Integer> targetFreq = new HashMap<>();
-        for (char c : t.toCharArray()) {
-            targetFreq.put(c, targetFreq.getOrDefault(c, 0) + 1);
-        }
-
-        int left = 0, right = 0;
-        int requiredChars = targetFreq.size();
-        int formedChars = 0;
-        Map<Character, Integer> windowFreq = new HashMap<>();
-
+        int i = 0;
+        int j = 0;
+        int n = s.length();
+        int requiredChar = targetF.size();
+        int formedChar = 0;
         int minLen = Integer.MAX_VALUE;
-        int minLeft = 0, minRight = 0;
-
-        while (right < s.length()) {
-            char currentChar = s.charAt(right);
-            windowFreq.put(currentChar, windowFreq.getOrDefault(currentChar, 0) + 1);
-
-            if (targetFreq.containsKey(currentChar) && windowFreq.get(currentChar).equals(targetFreq.get(currentChar))) {
-                formedChars++;
+       String result = "";
+        HashMap<Character,Integer> windowF = new HashMap<>();
+        while(j < n){
+            char ch = s.charAt(j);
+            windowF.put(ch,windowF.getOrDefault(ch,0)+1);
+            if(targetF.containsKey(ch) && windowF.get(ch).equals(targetF.get(ch))){
+                formedChar++;
             }
-
-            while (left <= right && formedChars == requiredChars) {
-                if (right - left + 1 < minLen) {
-                    minLen = right - left + 1;
-                    minLeft = left;
-                    minRight = right + 1;
+            while(i <= j && formedChar == requiredChar){
+                char c = s.charAt(i);
+                if(j - i + 1 < minLen){
+                    minLen =  j - i + 1;
+                    result = s.substring(i,j+ 1); 
                 }
-
-                char leftChar = s.charAt(left);
-                windowFreq.put(leftChar, windowFreq.get(leftChar) - 1);
-
-                if (targetFreq.containsKey(leftChar) && windowFreq.get(leftChar) < targetFreq.get(leftChar)) {
-                    formedChars--;
+                
+                windowF.put(c,windowF.get(c)-1);
+                if(targetF.containsKey(c) && windowF.get(c) < targetF.get(c)){
+                    formedChar--;
                 }
-
-                left++;
+                i++;
+                
             }
-
-            right++;
+            j++;
         }
-
-        return (minLen == Integer.MAX_VALUE) ? "" : s.substring(minLeft, minRight);
+        return result;
     }
 }
