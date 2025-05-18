@@ -9,9 +9,8 @@ class Solution {
             if(!set.contains(ch)){
                 set.add(ch);
                 j++;
-                len = Math.max(len,set.size());
+                len = Math.max(len, set.size());
             }else{
-                
                 set.remove(s.charAt(i));
                 i++;
             }
