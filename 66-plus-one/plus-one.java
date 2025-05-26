@@ -1,10 +1,7 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        // int res = 0;
         int n = digits.length - 1;
-        int[] result = new int[digits.length];
-        int carry = 0;
-        int last = result.length - 1;
+        
         if(checkAllnine(digits)){
             int[] res = new int[digits.length+1];
             res[0] = 1;
@@ -19,7 +16,7 @@ class Solution {
             }
            
         }
-        return result;
+        return digits;
     }
     boolean checkAllnine(int[] digits){
         for(int digit: digits){
