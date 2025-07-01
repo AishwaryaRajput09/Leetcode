@@ -5,10 +5,8 @@ class Solution {
          while(j > 0){
             if(word.charAt(j) == word.charAt(j-1)){
                 cnt++;
-                j--;
-            }else{
-                j--;
             }
+                j--;
          }
         return cnt;
     }
