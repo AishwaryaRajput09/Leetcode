@@ -33,7 +33,7 @@ class Solution {
         int startCol = (col / 3) * 3;
         for(int i = startR; i < startR+3; i++){
             for(int j = startCol; j < startCol+3; j++){
-                if((row != i && col != j) && (grid[i][j] == c)){
+                if((row != i && col != j) && grid[i][j] == c){
                     return false;
                 }
             }
