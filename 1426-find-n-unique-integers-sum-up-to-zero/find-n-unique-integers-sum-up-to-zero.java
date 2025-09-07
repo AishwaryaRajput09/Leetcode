@@ -7,7 +7,7 @@ class Solution {
                 arr[el++] = i;
             }
         }else{
-            for(int i = - (n/2); i < n/2 + 1; i++){
+            for(int i = - (n/2); i <= n/2; i++){
                 if(i == 0){
                     continue;
                 }else{
