@@ -3,7 +3,7 @@ class Solution {
         int[] arr = new int[2];
         // int sum = n;
         int ind = 0;
-        for(int i = 1; i < n; i++){
+        for(int i = 1; i <= n/2; i++){
             int temp = i;
             if(nonZ(temp) && nonZ(n - i)){
                 arr[0] = n - i;
