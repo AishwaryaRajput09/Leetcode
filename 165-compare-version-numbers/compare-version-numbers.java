@@ -1,27 +1,32 @@
 class Solution {
-    public int compareVersion(String ver1, String ver2) {
+    public int compareVersion(String version1, String version2) {
+        int len1 = version1.length();
+        int len2 = version2.length();
         int i = 0;
         int j = 0;
-        int fe = ver1.length();
-        int se = ver2.length();
-        while (i < fe || j < se) {
-            StringBuilder sb1 = new StringBuilder();
-            StringBuilder sb2 = new StringBuilder();
-            while (i < fe && ver1.charAt(i) != '.') {
-                sb1.append(ver1.charAt(i));
+        while(i < len1 || j < len2){
+            StringBuilder s1 = new StringBuilder();
+            StringBuilder s2 = new StringBuilder();
+
+            while(i < len1 && version1.charAt(i) != '.'){
+                s1.append(version1.charAt(i));
                 i++;
             }
-            while (j < se && ver2.charAt(j) != '.') {
-                sb2.append(ver2.charAt(j));
+            while(j < len2 && version2.charAt(j) != '.'){
+                s2.append(version2.charAt(j));
                 j++;
             }
-            int num1 = sb1.length() == 0 ? 0 : Integer.parseInt(sb1.toString());
-            int num2 = sb2.length() == 0 ? 0 : Integer.parseInt(sb2.toString());
-            if (num1 < num2) return -1;
-            if (num1 > num2) return 1;
+            int num1 = s1.length() == 0 ? 0 : Integer.parseInt(s1.toString());
+            int num2 = s2.length() == 0 ? 0 : Integer.parseInt(s2.toString());
+            if(num1 < num2){
+                return -1;
+            }else if(num1 > num2){
+                return 1;
+            }
             i++;
             j++;
         }
         return 0;
+
     }
 }
