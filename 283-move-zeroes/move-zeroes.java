@@ -5,12 +5,10 @@ class Solution {
         while(i < nums.length && j < nums.length){
             if(nums[i] != 0){
                 swap(i, j, nums);
-                i++;
-                j++;
+                i++; j++;
             }else{
                 i++;
             }
-        
         }
     }
     public static void swap(int i, int j, int[] arr){
