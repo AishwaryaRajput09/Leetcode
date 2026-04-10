@@ -1,24 +1,26 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         // a + b + c = 0   0 -> a + b = -c
-        HashSet<List<Integer>> triplets = new HashSet<>();
+        List<List<Integer>> triplets = new ArrayList<>();
         int n = nums.length - 1;
         Arrays.sort(nums);
         for (int i = 0; i <= n; i++) {
             if (nums[i] > 0)
                 break;
 
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             List<List<Integer>> pairs = two_sorted_sum(nums, i + 1, n, -nums[i]);
             for (List<Integer> pair : pairs) {
                 List<Integer> triplet = new ArrayList<>();
                 triplet.add(nums[i]);
                 triplet.addAll(pair);
-                Collections.sort(triplet);
                 triplets.add(triplet);
             }
 
         }
-        return new ArrayList<>(triplets);
+        return triplets;
     }
 
     public List<List<Integer>> two_sorted_sum(int[] nums, int start, int end, int target){
@@ -32,8 +34,10 @@ class Solution {
                 // pair.add(target);
                 pairs.add(pair);
                 start++;
-               
-                // return pairs;
+                while(start < end && nums[start] == nums[start-1]){
+                    start++;
+                }
+                
             }else if(sum < target){
                 start++;
             }else{
