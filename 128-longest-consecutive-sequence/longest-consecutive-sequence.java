@@ -7,12 +7,11 @@ class Solution {
             numSet.add(num);
         }
         int longestChain = 0;
-        // int max_longest_chain = 0;
         for (int num : numSet) {
 
             if (!numSet.contains(num - 1)) {
                 int currNum = num;
-                int currChain = 0;
+                int currChain = 1;
                 while(numSet.contains(currNum + 1)){
                     currChain++;
                     currNum++;
@@ -20,6 +19,6 @@ class Solution {
                 longestChain = Math.max(longestChain, currChain);
             }
         }
-        return longestChain+1;
+        return longestChain;
     }
 }
