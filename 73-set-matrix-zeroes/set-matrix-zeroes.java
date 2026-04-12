@@ -12,10 +12,7 @@ class Solution {
         }
         for (int r = 0; r < matrix.length; r++) {
             for (int c = 0; c < matrix[0].length; c++) {
-                if(zero_rows.contains(r)){
-                    matrix[r][c] = 0;
-                }
-                if(zero_cols.contains(c)){
+                if(zero_rows.contains(r) || zero_cols.contains(c)){
                     matrix[r][c] = 0;
                 }
             }
