@@ -7,12 +7,9 @@ class Solution {
         canRotate.add(5);
         canRotate.add(6);
         canRotate.add(9);
-        // invalidNum.add(0);
-        // invalidNum.add(1);
         invalidNum.add(4);
         invalidNum.add(7);
         invalidNum.add(3);
-        // invalidNum.add(8);
         for (int i = 0; i <= n; i++) {
 
             if (canRotateNum(i, canRotate, invalidNum)) {
