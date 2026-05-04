@@ -1,49 +1,35 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> res = new ArrayList<>();
-        HashMap<Character, Integer> freq = new HashMap<>();
-
-        for (char ch : p.toCharArray()) {
-            if (freq.containsKey(ch)) {
-                freq.put(ch, freq.get(ch) + 1);
-            } else {
-                freq.put(ch, 1);
-            }
+        List<Integer> list = new ArrayList<>();
+        if (s.length() < p.length())
+            return list;
+        int[] expected_freq = new int[26];
+        int[] window_freq = new int[26];
+        for (char c : p.toCharArray()) {
+            expected_freq[c - 'a'] += 1;
         }
-
-        int cnt = freq.size();
-        int k = p.length();
-        int len = s.length();
-        int i = 0;
-        int j = 0;
-        while (j < len) {
-            char c = s.charAt(j);
-            if (freq.containsKey(c)) {
-                freq.put(c, freq.get(c) - 1);
-                if (freq.get(c) == 0) {
-                    // map.remove(c);
-                    cnt--;
-                }
-
-            } 
-            if (j - i + 1 < k) {
-                j++;
-            } else if (j - i + 1 == k) {
-                if (cnt == 0)
-                    res.add(i);
-                char ch = s.charAt(i);
-                if (freq.containsKey(ch)) {
-                    freq.put(ch, freq.get(ch) + 1);
-                    if (freq.get(ch) == 1) {
-                        cnt++;
+        int right = 0;
+        int left = 0;
+        while (right < s.length()) {
+            char ch = s.charAt(right);
+            window_freq[ch - 'a'] += 1;
+            if (right - left + 1 == p.length()) {
+                boolean isMatch = true;
+                for (int i = 0; i < 26; i++) {
+                    if (window_freq[i] != expected_freq[i]) {
+                        isMatch = false;
+                        break;
                     }
                 }
-                i++;
-        j++;
+                if(isMatch){
+                    list.add(left);
+                }
+                window_freq[s.charAt(left) - 'a'] -= 1;
+                left++;
             }
-        
-        }
-        return res;
-    }
+            right++;
 
+        }
+    return list;
+    }
 }
