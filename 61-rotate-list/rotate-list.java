@@ -10,21 +10,21 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        int size=1;
-        if (head == null || k == 0) return head; // edge cases
-        ListNode node = head;
-        while (node.next != null) { // make the list circular
-            node = node.next;
+        if (head == null || k == 0) return head;
+        ListNode temp = head;
+        int size = 1;
+        while(temp.next != null){
+            temp = temp.next;
             size++;
         }
-        k = k%size;
-        node.next = head;
-        ListNode end = node.next; // end node of the list
-        for (int i = 0; i <size-k-1; i++) { // move k steps backward from the end node
+        temp.next = head;
+        k = k % size;
+        ListNode end = temp.next;
+        for(int i = 0; i < size - k - 1; i++){
             end = end.next;
         }
-        head = end.next; // new head of the list
-        end.next = null; // break the loop
-        return head; // return the new head
+        head = end.next;
+        end.next = null;
+        return head;
     }
 }
