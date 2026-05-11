@@ -1,7 +1,6 @@
 class MinStack {
     Stack<Integer> st;
     Stack<Integer> minStack;
-    int min = Integer.MAX_VALUE;
     public MinStack() {
         minStack = new Stack<>();
         st = new Stack<>();
@@ -15,7 +14,6 @@ class MinStack {
     }
     
     public void pop() {
-        
         if(st.peek().equals(minStack.peek())){
         minStack.pop();
         }
@@ -29,9 +27,7 @@ class MinStack {
     }
     
     public int getMin() {
-       int el = minStack.peek();
-       
-        return el;
+       return minStack.peek();
     }
 }
 
