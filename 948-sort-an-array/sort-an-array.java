@@ -1,57 +1,45 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        int e = nums.length - 1;
-        mergeSort(0, e, nums);
+        quickSort(nums, 0, nums.length - 1);
         return nums;
     }
 
-    public void mergeSort(int start, int end, int[] nums) {
+    public void quickSort(int[] nums, int start, int end) {
         if (start >= end)
             return;
-        int mid = (start + end) / 2;
+        int pivot = randomPartition(nums, start, end);
+        quickSort(nums, start, pivot - 1);
+        quickSort(nums, pivot + 1, end);
 
-        mergeSort(start, mid, nums);
-        mergeSort(mid + 1, end, nums);
-
-        merge(nums, start, end);
     }
 
-    public void merge(int[] nums, int s, int e) {
+    public int randomPartition(int[] nums, int low, int high) {
 
-        int mid = (e + s) / 2;
-        int l1 = mid - s + 1;
-        int l2 = e - mid;
-        int left[] = new int[l1];
-        int right[] = new int[l2];
+        int random = low + (int) (Math.random() * (high - low + 1));
 
-        int k = s;
-        for (int i = 0; i < l1; i++) {
-            left[i] = nums[k++];
-        }
-        k = mid + 1;
-        for (int i = 0; i < l2; i++) {
-            right[i] = nums[k++];
-        }
+        swap(nums, random, high);
 
-        k = s;
-        int idx1 = 0;
-        int idx2 = 0;
+        return partition(nums, low, high);
+    }
 
-        while (idx1 < left.length && idx2 < right.length) {
-            if (left[idx1] < right[idx2]) {
-                nums[k++] = left[idx1++];
-            } else {
-                nums[k++] = right[idx2++];
+    public int partition(int[] nums, int left, int right) {
+        int pivot = nums[right];
+        int i = left - 1;
+        for (int j = left; j < right; j++) {
+            if (nums[j] < pivot) {
+                i++;
+                swap(nums, i, j);
+
             }
-
         }
-        while (idx1 < left.length) {
-            nums[k++] = left[idx1++];
-        }
-        while (idx2 < right.length) {
-            nums[k++] = right[idx2++];
-        }
+        swap(nums, i + 1, right);
+        return i + 1;
 
     }
 
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[j];
+        nums[j] = nums[i];
+        nums[i] = temp;
+    }
 }
