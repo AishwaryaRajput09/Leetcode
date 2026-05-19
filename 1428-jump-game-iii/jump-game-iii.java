@@ -14,9 +14,7 @@ class Solution {
        if(!visited[start]){
         visited[start] = true;
         if(start + arr[start] < arr.length){
-        
         left = solve(arr, start + arr[start], visited);
-        
        }
        if (start - arr[start] >= 0 && start - arr[start] < arr.length){
         right = solve(arr, start - arr[start], visited);
