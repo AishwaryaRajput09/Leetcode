@@ -1,24 +1,24 @@
 class Solution {
-    private static void backtrack(String s, int index, HashMap<String, Integer> map, StringBuilder curr, List<String> res){
-        if (index >= s.length()){
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        HashSet<String> set = new HashSet<>(wordDict);
+        List<String> res = new ArrayList<>();
+        StringBuilder curr = new StringBuilder();
+        helper(s, res, set, curr, 0);
+        return res;
+    }
+    void helper(String s,List<String> res, HashSet<String> set, StringBuilder curr, int ind){
+        if(ind == s.length()){
             res.add(curr.toString());
-            return;
         }
-        for (int i = index + 1; i <= s.length(); i++){
-            String t = s.substring(index, i);
-            if (map.getOrDefault(t, 0) == 1){
-                int len = curr.length();
-                curr.append(t).append(i < s.length() ? " ":"");
-                backtrack(s, i, map, curr, res);
-                curr.setLength(len);
+        for(int i = ind + 1; i <= s.length(); i++){
+            String substr = s.substring(ind, i);
+            if(set.contains(substr)){
+            int len = curr.length();
+            curr.append(substr).append(i < s.length() ? " ": "");
+            helper(s, res, set, curr, i);
+            curr.setLength(len);
             }
         }
     }
-    public List<String> wordBreak(String s, List<String> wordDict) {
-        List<String> res = new ArrayList<>();
-        HashMap<String, Integer> map = new HashMap<>();
-        for (String word : wordDict) map.put(word, 1);
-        backtrack(s, 0, map, new StringBuilder(), res);
-        return res;
-    }
+
 }
