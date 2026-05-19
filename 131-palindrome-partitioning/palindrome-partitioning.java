@@ -1,34 +1,34 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> result = new ArrayList<>();
-        List<String> ans = new ArrayList<>();
-        solve(result,ans,s,0);
-        return result;
+        List<List<String>> res = new ArrayList<>();
+        List<String> pals = new ArrayList<>();
+        findPal(s, res, pals, 0);
+        return res;
     }
-    private void solve(List<List<String>> result, List<String> ans,String s,int start){
-        if(start == s.length()){
-            result.add(new ArrayList<>(ans));
+    private void findPal(String s, List<List<String>> res, List<String> pals, int idx){
+        if(idx == s.length()){
+            res.add(new ArrayList(pals));
             return;
         }
-
-        for(int e = start + 1; e <= s.length(); e++){
-            String substr = s.substring(start,e);
+        for(int i = idx + 1; i <= s.length(); i++){
+            String substr = s.substring(idx, i);
             if(isPal(substr)){
-                ans.add(substr);
-                solve(result,ans,s,e);
-                ans.remove(ans.size() - 1);
+                pals.add(substr);
+                findPal(s, res, pals, i);
+                pals.remove(pals.size()-1);
             }
+
         }
     }
-    private boolean isPal(String s){
-        int st = 0;
-        int e = s.length() - 1;
-        while( st < e){
-            if(s.charAt(st) != s.charAt(e)){
+    boolean isPal(String s){
+        int i = 0;
+        int j = s.length()-1;
+        while(i <= j){
+            if(s.charAt(i) != s.charAt(j)){
                 return false;
             }
-            st++;
-            e--;
+            i++;
+            j--;
         }
         return true;
     }
