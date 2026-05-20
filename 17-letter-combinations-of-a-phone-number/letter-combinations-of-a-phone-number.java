@@ -13,14 +13,15 @@ class Solution {
         if(digits.length() == 0){
             return res;
         } 
-        combinations(digits, res, "", 0, map);
+        StringBuilder op = new StringBuilder();
+        combinations(digits, res, op, 0, map);
         return res;
 
     }
 
-    public void combinations(String digits, List<String> res, String op, int ind, HashMap<Character, String> map) {
-        if (op.length() == digits.length()) {
-            res.add(op);
+    public void combinations(String digits, List<String> res, StringBuilder op, int ind, HashMap<Character, String> map) {
+        if (ind == digits.length()) {
+            res.add(op.toString());
             return;
         }
         char digit = digits.charAt(ind);
@@ -28,9 +29,10 @@ class Solution {
         if(map.containsKey(digit)){
             String ip = map.get(digit);
             for(int i = 0; i < ip.length(); i++){
-                char ch = ip.charAt((i));
+                op.append(ip.charAt(i));
                 // ip = ip.substring(1);
-                combinations(digits, res, op+ch, ind+1, map);
+                combinations(digits, res, op, ind+1, map);
+                op.deleteCharAt(op.length()-1);
             }
         }
     }
