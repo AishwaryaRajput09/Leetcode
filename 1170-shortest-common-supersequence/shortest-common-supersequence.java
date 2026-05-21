@@ -9,10 +9,10 @@ class Solution {
                     dp[i][j] = 0;
             }
         }
-        return lcsToShortestCommonSuperSequence(str1, str2, m, n, dp);
+        return lcsToScs(str1, str2, m, n, dp);
     }
 
-    private String lcsToShortestCommonSuperSequence(String s1, String s2, int m, int n, int[][] dp) {
+    private String lcsToScs(String s1, String s2, int m, int n, int[][] dp) {
         // StringBuilder str = new StringBuilder();
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
