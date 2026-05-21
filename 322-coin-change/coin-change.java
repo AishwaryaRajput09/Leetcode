@@ -16,13 +16,13 @@ class Solution {
 
             }
         }
-        for (int j = 1; j <= amount; j++) {
-            if (j % coins[0] == 0) {
-                dp[1][j] = j / coins[0];
-            } else {
-                dp[1][j] = Integer.MAX_VALUE -1;
-            }
-        }
+        // for (int j = 1; j <= amount; j++) {
+        //     if (j % coins[0] == 0) {
+        //         dp[1][j] = j / coins[0];
+        //     } else {
+        //         dp[1][j] = Integer.MAX_VALUE -1;
+        //     }
+        // }
         int ans = helper(coins, dp, n, amount);
         
     return ans == Integer.MAX_VALUE -1? -1: ans;
