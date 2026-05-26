@@ -1,17 +1,19 @@
 class Solution {
     public int numberOfSpecialChars(String word) {
-        HashSet<Character> map= new HashSet<>();
+        boolean [] lowerCase = new boolean[26];
+        boolean [] upperCase = new boolean[26];
         int cnt = 0;
         for(char ch : word.toCharArray()){
-            if(!map.contains(ch)){
-                map.add(ch);
+            if(Character.isLowerCase(ch)){
+                lowerCase[ch - 'a'] = true;
+            }else{
+                upperCase[ch - 'A'] = true;
             }
         }
-        for(char ch: map){
-                if(map.contains((char)(ch + 32))){
-                    cnt++;
-                }
-            
+        for(int i = 0; i < 26; i++){
+            if(upperCase[i] && lowerCase[i]){
+                cnt++;
+            }
         }
         return cnt;
     }
