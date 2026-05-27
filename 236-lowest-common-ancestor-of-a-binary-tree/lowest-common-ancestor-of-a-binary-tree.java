@@ -13,10 +13,7 @@ class Solution {
         return dfs(root, p, q);
     }
     public TreeNode dfs(TreeNode node, TreeNode p, TreeNode q){
-            if(node == null){
-               return null;
-            }
-            if(node == p || node == q){
+            if(node == p || node == q || node == null){
                 return node;
             }
             TreeNode leftN = dfs(node.left, p, q);
