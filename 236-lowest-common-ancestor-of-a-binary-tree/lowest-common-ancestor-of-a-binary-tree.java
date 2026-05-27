@@ -19,6 +19,7 @@ class Solution {
             TreeNode leftN = dfs(node.left, p, q);
             TreeNode rightN = dfs(node.right, p, q);
             if(leftN != null && rightN != null) return node;
-            return  leftN != null ? leftN : rightN;
+              if(leftN != null ) return leftN;
+              return rightN;
     }
 }
