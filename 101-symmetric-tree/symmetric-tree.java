@@ -15,35 +15,35 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
+        ArrayList<Integer> left = new ArrayList<>();
+        ArrayList<Integer> right = new ArrayList<>();
         if(root == null) return true;
-        leftT(root,list);
-        rightT(root,list2);
-        if(list.size() != list2.size()) return false;
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i) != list2.get(i)) return false;
+        leftTree(root, left);
+        rightTree(root, right);
+        if(left.size() != right.size()) return false;
+        for(int i = 0; i < left.size(); i++){
+            if(left.get(i) != right.get(i)){
+                return false;
+            }
         }
         return true;
     }
-    private void leftT(TreeNode node,List<Integer> list){
-        if(node == null){
-            list.add(null);
+    public void leftTree(TreeNode node, ArrayList<Integer> lt){
+        if(node == null) {
+            lt.add(null);
             return;
         }
-        list.add(node.val);
-        leftT(node.left,list);
-        leftT(node.right,list);
-
+        lt.add(node.val);
+        leftTree(node.left, lt);
+        leftTree(node.right, lt);
     }
-    private void rightT(TreeNode node,List<Integer> list2){
-        if(node == null){
-            list2.add(null);
+    public void rightTree(TreeNode node, ArrayList<Integer> rt){
+        if(node == null) {
+            rt.add(null);
             return;
         }
-        list2.add(node.val);
-        rightT(node.right,list2);
-        rightT(node.left,list2);
-
+        rt.add(node.val);
+        rightTree(node.right, rt);
+        rightTree(node.left, rt);
     }
 }
