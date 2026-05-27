@@ -14,49 +14,51 @@
  * }
  */
 class Solution {
-    class NodeWithValue {
-    TreeNode node;
-    int value1;
-    int value2;
-    
-    NodeWithValue(TreeNode node, int value1, int value2) {
-        this.node = node;
-        this.value1 = value1;
-        this.value2 = value2;
+    class Tuple{
+        TreeNode node;
+        int level;
+        int axis;
+
+        Tuple(TreeNode node, int level, int axis){
+            this.node = node;
+            this.level = level;
+            this.axis = axis;
+        }
     }
-}
     public List<List<Integer>> verticalTraversal(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        Queue<NodeWithValue> q = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<Tuple> q = new LinkedList<>();
+        //map to store order orderly and priority queue in case of overlapping elementwe can take min val's first
         TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
-        q.offer(new NodeWithValue(root,0,0));
+        q.offer(new Tuple(root, 0, 0));
         while(!q.isEmpty()){
-            NodeWithValue ndv = q.poll();
-            TreeNode node = ndv.node;
-            int x = ndv.value1;
-            int y = ndv.value2;
-            if(!map.containsKey(x)){
-                map.put(x,new TreeMap<>());
+            Tuple curr = q.poll();
+            TreeNode node = curr.node;
+            int axis = curr.axis;
+            int level = curr.level;
+            if(!map.containsKey(axis)){
+                map.put(axis, new TreeMap<>());
             }
-            if(!map.get(x).containsKey(y)){
-                map.get(x).put(y,new PriorityQueue<>());
+            if(!map.get(axis).containsKey(level)){
+                map.get(axis).put(level, new PriorityQueue<>());
             }
-            map.get(x).get(y).offer(node.val);
+            map.get(axis).get(level).offer(node.val);
             if(node.left != null){
-                q.offer(new NodeWithValue(node.left,x-1,y+1));
+                q.offer(new Tuple(node.left, level + 1, axis - 1));
             }
             if(node.right != null){
-                q.offer(new NodeWithValue(node.right,x+1,y+1));
+                q.offer(new Tuple(node.right, level + 1, axis + 1));
             }
         }
-        for(TreeMap<Integer, PriorityQueue<Integer>> ys: map.values()){
-            result.add(new ArrayList<>());
+        //moment of the truth haha
+        for(TreeMap<Integer, PriorityQueue<Integer>> ys : map.values()){
+            res.add(new ArrayList<>());
             for(PriorityQueue<Integer> nodes: ys.values()){
                 while(!nodes.isEmpty()){
-                    result.get(result.size()-1).add(nodes.poll());
+                res.get(res.size()-1).add(nodes.poll());
                 }
             }
         }
-        return result;
+        return res;
     }
 }
